@@ -1,0 +1,14 @@
+.games-cards-list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 260px);
+  gap: 30px 30px;
+  justify-content: center;
+  justify-items: center;
+  padding: 0;
+  margin-bottom: 100px;
+}
+
+.games-cards-list__item {
+  list-style: none;
+}
