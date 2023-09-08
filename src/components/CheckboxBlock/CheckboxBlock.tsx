@@ -1,16 +1,22 @@
-import React from "react";
-import "./FilterBlock.css";
+import React, {ChangeEvent} from "react";
+import "./CheckboxBlock.css";
+import {useSelector} from "react-redux";
+import {RootState} from "../../store/store";
 
-type FilterBlockProps = {
+type CheckboxBlockProps = {
   heading: string,
   optionsConfig: Array<{
     name: string,
-    value: string,
+    id: string,
   }>,
+  handleCheck: Function,
 }
 
-const FilterBlock: React.FC<FilterBlockProps> = (props) => {
+const CheckboxBlock: React.FC<CheckboxBlockProps> = (props) => {
   const [isSelectActive, toggleIsSelectActive] = React.useState(false);
+  const checkboxState = props.optionsConfig.map((item, index) => {
+    return useSelector((state : RootState) => state.sorting[`isSorting${item.id}`]);
+  });
 
   function handleSelectClick() {
     toggleIsSelectActive(!isSelectActive);
@@ -22,7 +28,7 @@ const FilterBlock: React.FC<FilterBlockProps> = (props) => {
         <option className="select__option" value="0" defaultValue={0}>{props.heading}</option>
         {
           props.optionsConfig.map((item, index) => {
-            return <option className="select__option" value={item.value} key={index}>{item.name}</option>
+            return <option className="select__option" value={item.id} key={index}>{item.name}</option>
           })
         }
       </select>
@@ -39,10 +45,9 @@ const FilterBlock: React.FC<FilterBlockProps> = (props) => {
             {
               props.optionsConfig.map((item, index) => {
                 return <div className="select__option-container" key={index}>
-                  <label className="select__option" htmlFor={item.value}>{item.name}</label>
-                  <input className="select__invisible-checkbox" id={item.value} type="checkbox"
-                         checked={false} onChange={() => {
-                  }}/>
+                  <label className="select__option" htmlFor={item.id}>{item.name}</label>
+                  <input className="select__invisible-checkbox" id={item.id} type="checkbox"
+                         checked={checkboxState[index]} onChange={(evt: ChangeEvent) => props.handleCheck(evt, item.id)} />
                   <span className="select__checkbox"></span>
                 </div>
               })
@@ -54,4 +59,4 @@ const FilterBlock: React.FC<FilterBlockProps> = (props) => {
   );
 }
 
-export default FilterBlock;
+export default CheckboxBlock;

@@ -1,39 +1,35 @@
 type OptionsConfig = Array<{
   name: string,
-  value: string,
+  id: string,
 }>;
 
 const GenreOptionsConfig: OptionsConfig = [
   {
-    name: "шутер",
-    value: "shooter",
+    name: "шутеры",
+    id: "Shooter",
   },
   {
-    name: "стратегия",
-    value: "strategy",
+    name: "стратегии",
+    id: "Strategy",
   },
   {
-    name: "ужас",
-    value: "horror",
+    name: "спортивные",
+    id: "Sports",
   },
   {
     name: "ммо рпг",
-    value: "mmorpg",
+    id: "MMORPG",
   },
 ];
 
 const PlatformOptionsConfig: OptionsConfig = [
   {
     name: "пк",
-    value: "PC",
+    id: "PC",
   },
   {
     name: "браузер",
-    value: "browser",
-  },
-  {
-    name: "мобильный телефон",
-    value: "mobile",
+    id: "Web",
   },
 ];
 

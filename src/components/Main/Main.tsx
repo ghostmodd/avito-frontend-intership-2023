@@ -6,7 +6,6 @@ import logo from "../../images/logo.svg";
 import Promo from "../Promo/Promo";
 import Section from "../Section/Section";
 import GamesCardsList from "../GamesCardsList/GamesCardsList";
-import { games } from "../../utils/constants/temporaryConst";
 import GamesFilters from "../GamesFilters/GamesFilters";
 import { Footer } from "antd/lib/layout/layout";
 
@@ -26,7 +25,7 @@ const Main: React.FC = () => {
         <Section className="additional-background" id="game-list" heading="Список игр">
           <GamesFilters/>
 
-          <GamesCardsList cardsList={games}/>
+          <GamesCardsList />
         </Section>
       </Content>
 

@@ -29,11 +29,11 @@ class MainApi {
       method: method,
     })
       .then((res) => {
-        this._getJSON(res);
+        return this._getJSON(res);
       })
       .catch((err) => {
         console.log(err)
-        if(attemptsLeft > 0) {
+        if (attemptsLeft > 0) {
           this._makeRequest(url, method, attemptsLeft - 1);
         } else {
           console.log('Ошибка: не удалось выполнить запрос!');
@@ -41,7 +41,18 @@ class MainApi {
       })
   }
 
-  getAllGames() {
-    return this._makeRequest(`${this._baseUrl}/gamesApi`, 'GET', this._maxAttempts)
+  getGamesList() {
+    return this._makeRequest(`${this._baseUrl}/games`, 'GET', this._maxAttempts)
   }
 }
+
+const mainApi = new MainApi(
+  'https://free-to-play-games-database.p.rapidapi.com/api',
+  {
+    'X-RapidAPI-Key': 'd461bc3a80msha453b1d753f5364p1d8851jsnc323850d6d60',
+    'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
+  },
+  2
+);
+
+export default mainApi;

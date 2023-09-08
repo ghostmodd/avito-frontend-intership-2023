@@ -9,6 +9,7 @@ type GameCardProps = {
   publisher: string,
   release_date: string,
   genre: string,
+  platform: string,
 };
 
 const GameCard: React.FC<GameCardProps> = (props) => {
@@ -26,7 +27,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
     >
       <div className="game-card__info-container">
         <div className="game-card__title-container">
-          <h3 className="game-card__title">{props.title}</h3>
+          <h3 className="game-card__title">{props.platform}</h3>
           <p className="game-card__publisher">{props.publisher}</p>
         </div>
 

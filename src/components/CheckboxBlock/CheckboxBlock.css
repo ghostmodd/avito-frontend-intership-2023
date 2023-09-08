@@ -62,6 +62,10 @@
   color: white;
 }
 
+.select__checkbox-container {
+  position: relative;
+}
+
 .select__invisible-checkbox {
   position: absolute;
   width: 1px;
