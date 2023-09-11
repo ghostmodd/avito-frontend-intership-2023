@@ -7,6 +7,22 @@
   opacity: 0.8;
 }
 
+.main-background {
+  background: linear-gradient(128deg, #121537, #3a427f, #060930);
+}
+
+.additional-background {
+  background: linear-gradient(165deg, #1a1c4b, #0897ab) repeat-y;
+}
+
+.static-background {
+  background: linear-gradient(140deg, rgba(26,28,75,1) 0%, rgba(0,124,142,1) 100%);
+}
+
+.black-background {
+  background-color: black;
+}
+
 .header {
   height: auto;
   min-height: 95px;
@@ -74,20 +90,22 @@
   }
 
   .footer {
-    width: 97%;
+    width: 300px;
     margin-left: 16px;
     flex-direction: column;
+    padding-top: 50px;
+    border-top: 1px solid #012F35;
   }
 
   .menu__list {
     max-width: 186px;
     flex-direction: column;
     margin-bottom: 48px;
-    gap: 32px;
+    gap: 30px;
   }
 
   .menu__link {
-    font-size: 24px;
+    font-size: 20px;
     line-height: 100%;
   }
 }

@@ -6,6 +6,7 @@ import {RootState} from "../../store/store";
 import mainApi from "../../utils/api/MainApi";
 import {setVisibleGamesCardsList} from "../../features/visibleGamesCardList/visibleGamesCardList";
 import useLocalStorage from "../../utils/hooks/useLocalStorage";
+import GamePage from "../GamePage/GamePage";
 
 const App: React.FC = () => {
   const visibleGamesCardsList = useSelector((state: RootState) => state.visibleGamesCardsList);
@@ -28,7 +29,8 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Main/>
+      {/*<Main/>*/}
+      <GamePage />
     </>
   )
 }
