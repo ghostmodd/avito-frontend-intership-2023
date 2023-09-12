@@ -56,7 +56,7 @@ const GameCard: React.FC<GameCardConfig> = (props) => {
             icon={<DownloadOutlined />}
             onClick={handleDownload}
           >
-            Загрузить
+            Download
           </Button>
         )}
       </div>
