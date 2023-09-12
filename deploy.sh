@@ -16,7 +16,9 @@ mkdir build_repo
 cd build_repo
 
 # Копирование данных из build во временную директорию
+cp -R ../build/* .
 
+git checkout $BUILD_BRANCH
 
 # Переход в ветку build
 git checkout $BUILD_BRANCH
