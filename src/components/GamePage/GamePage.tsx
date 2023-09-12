@@ -82,7 +82,7 @@ const GamePage: React.FC = () => {
                   size="large"
                   icon={<DownloadOutlined />}
                 >
-                  Загрузить
+                  Download
                 </Button>
               </div>
             </div>
