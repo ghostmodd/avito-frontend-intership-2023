@@ -78,18 +78,18 @@
   cursor: pointer;
   display: block;
   border-radius: 3px;
-  background-color: #6C6E8C;
+  background-color: #6c6e8c;
   width: 17px;
   height: 17px;
   margin: 0;
 }
 
 .select__invisible-checkbox:focus + .select__checkbox {
-  outline: 1px solid #4285F4;
+  outline: 1px solid #4285f4;
 }
 
 .select__invisible-checkbox:checked + .select__checkbox {
-  background-color: #0897AB;
+  background-color: #0897ab;
   background-repeat: no-repeat;
   background-position: center;
   background-image: url("../../images/checkbox_checked.svg");

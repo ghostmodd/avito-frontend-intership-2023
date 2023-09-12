@@ -1,32 +1,23 @@
-import React from "react";
-import "./GameCard.css";
-import {Card, Button, Progress} from "antd";
-import {DownloadOutlined} from "@ant-design/icons"
-import {useNavigate} from "react-router-dom";
+import React from "react"
+import "./GameCard.css"
+import { Card, Button, Progress } from "antd"
+import { DownloadOutlined } from "@ant-design/icons"
+import { useNavigate } from "react-router-dom"
+import { GameCardConfig } from "./GameCardConfig"
 
-type GameCardProps = {
-  id: number,
-  imageLink: string,
-  title: string,
-  publisher: string,
-  release_date: string,
-  genre: string,
-  platform: string,
-};
-
-const GameCard: React.FC<GameCardProps> = (props) => {
-  const navigate = useNavigate();
-  const [isDownloading, toggleIsDownloading] = React.useState(false);
+const GameCard: React.FC<GameCardConfig> = (props) => {
+  const navigate = useNavigate()
+  const [isDownloading, toggleIsDownloading] = React.useState(false)
 
   function handleDownload() {
-    toggleIsDownloading(!isDownloading);
+    toggleIsDownloading(!isDownloading)
   }
 
   function handleLinkToGamePage() {
-    navigate(`/games/${props.id}`);
+    navigate(`/games/${props.id}`)
     window.scrollTo({
       top: 0,
-      behavior: "instant"
+      behavior: "instant",
     })
   }
 
@@ -34,7 +25,13 @@ const GameCard: React.FC<GameCardProps> = (props) => {
     <Card
       hoverable
       className="game-card"
-      cover={<img alt={`Постер игры "${props.title}"`} src={props.imageLink} onClick={handleLinkToGamePage}/>}
+      cover={
+        <img
+          alt={`Постер игры "${props.title}"`}
+          src={props.imageLink}
+          onClick={handleLinkToGamePage}
+        />
+      }
     >
       <div className="game-card__info-container">
         <div className="game-card__title-container">
@@ -44,20 +41,27 @@ const GameCard: React.FC<GameCardProps> = (props) => {
 
         <div className="game-card__description-container">
           <p className="game-card__description">Жанр: {props.genre}</p>
-          <p className="game-card__description">Дата релиза: {props.release_date}</p>
+          <p className="game-card__description">
+            Дата релиза: {props.release_date}
+          </p>
         </div>
 
-        {
-          isDownloading ?
-            <Button color="green" onClick={handleDownload}>
-              <Progress type={"line"} percent={30}/>
-            </Button>
-            :
-            <Button type={"primary"} icon={<DownloadOutlined/>} onClick={handleDownload}>Загрузить</Button>
-        }
+        {isDownloading ? (
+          <Button color="green" onClick={handleDownload}>
+            <Progress type={"line"} percent={30} />
+          </Button>
+        ) : (
+          <Button
+            type={"primary"}
+            icon={<DownloadOutlined />}
+            onClick={handleDownload}
+          >
+            Загрузить
+          </Button>
+        )}
       </div>
     </Card>
   )
 }
 
-export default GameCard;
+export default GameCard
