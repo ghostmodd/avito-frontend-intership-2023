@@ -1,8 +1,4 @@
-type OptionsConfig = Array<{
-  name: string,
-  id: string,
-  queryKeyWord: string,
-}>;
+import { OptionsConfig } from "./OptionsConfig"
 
 const GenreOptionsConfig: OptionsConfig = [
   {
@@ -18,14 +14,14 @@ const GenreOptionsConfig: OptionsConfig = [
   {
     name: "спортивные",
     id: "Sports",
-    queryKeyWord: "Sports"
+    queryKeyWord: "Sports",
   },
   {
     name: "ммо рпг",
     id: "MMORPG",
     queryKeyWord: "MMORPG",
   },
-];
+]
 
 const PlatformOptionsConfig: OptionsConfig = [
   {
@@ -38,6 +34,6 @@ const PlatformOptionsConfig: OptionsConfig = [
     id: "Web",
     queryKeyWord: "PC (Windows)",
   },
-];
+]
 
-export {GenreOptionsConfig, PlatformOptionsConfig}
+export { GenreOptionsConfig, PlatformOptionsConfig }

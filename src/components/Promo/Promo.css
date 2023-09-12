@@ -15,7 +15,7 @@
   font-size: 48px;
   letter-spacing: 1px;
   margin: 0 0 50px;
-  text-shadow: 0 4px 4px rgba(0, 0, 0, .2);
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .promo__paragraph {
@@ -23,7 +23,7 @@
   line-height: 157%;
   letter-spacing: 2px;
   margin: 0 0 140px;
-  text-shadow: 0 4px 4px rgba(0, 0, 0, .2);
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .promo__link-to-game-list {
@@ -31,7 +31,7 @@
   letter-spacing: 2px;
   color: white;
   padding: 20px 59px;
-  background-color: #0897AB;
+  background-color: #0897ab;
   clip-path: polygon(0 0, 93% 0, 100% 26%, 100% 100%, 7% 103%, 0% 77%);
 }
 
@@ -46,7 +46,7 @@
   max-width: 730px;
   border-radius: 48px;
   border: 1px solid black;
-  box-shadow: 0 0 38px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 38px rgba(0, 0, 0, 0.5);
 }
 
 .cropped-rectangle__container {

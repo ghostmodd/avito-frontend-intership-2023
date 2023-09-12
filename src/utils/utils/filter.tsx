@@ -1,61 +1,83 @@
-import {CardProps} from "antd";
+import { GameCardConfig } from "../../components/GameCard/GameCardConfig"
+import { FilterConfig } from "./FilterConfig"
 
-type cardProps = {
-  id: number,
-  thumbnail: string,
-  title: string,
-  publisher: string,
-  release_date: string,
-  genre: string,
-  platform: string,
-};
-
-
-type filterConfig = {
-  genre: Array<string>,
-  platform: Array<string>,
-}
-
+/**
+ * Класс содержит внутренние методы для фильтрации данных. В конструктор ничего не принимает.
+ * При создании готовит поля "_gamesCardsList" и "_filterConfig" для последующей записи.
+ */
 class Filter {
-  private _gamesCardsList: Array<cardProps>;
-  private _filterConfig: filterConfig;
+  public _gamesCardsList: Array<GameCardConfig>
+  public _filterConfig: FilterConfig
 
   constructor() {
-    this._gamesCardsList = [];
+    this._gamesCardsList = []
     this._filterConfig = {
       genre: [""],
       platform: [""],
-    };
+    }
   }
 
+  /**
+   * Функция осуществляет фильтрацию данных.
+   * @return Массив с отфильтрованными данными.
+   */
   _filter() {
-    let filteredArray: Array<cardProps> = [];
+    // Создается временная переменная для записи результата фильтрации
+    let filteredArray: Array<GameCardConfig>
 
+    // Проходим исходные данные методом 'filter'
     filteredArray = this._gamesCardsList.filter((card) => {
-      const filterResults = [];
+      // Создаем переменную, которая будет наполняться boolean значениями
+      // Каждое значение показывает, соответствует ли карточка условию фильтра
+      const doesFulfilConditions: boolean[] = []
+
+      // Запускаем цикл, который будет проходиться по ключевым словам
       for (let key in this._filterConfig) {
-        if (this._filterConfig[key as unknown as keyof filterConfig].length === 0) {
-          continue;
+        if (
+          this._filterConfig[key as unknown as keyof FilterConfig].length === 0
+        ) {
+          continue
         }
 
-        filterResults.push(this._filterConfig[key as unknown as keyof filterConfig].some((keyword) => {
-          return card[key as unknown as keyof cardProps].toString().includes(keyword);
-        }));
+        // Проверяем, соответствует ли карточка хотя бы одному из условий
+        const isSuitable = this._filterConfig[
+          key as unknown as keyof FilterConfig
+        ].some((keyword) => {
+          return card[key as unknown as keyof GameCardConfig]
+            .toString()
+            .includes(keyword)
+        })
+
+        doesFulfilConditions.push(isSuitable)
       }
 
-      return filterResults.every(item => item == true)
-    });
+      return doesFulfilConditions.every((item) => item)
+    })
 
-    return filteredArray;
+    return filteredArray
   }
 
-  getFilteredData(gamesCardsList: Array<cardProps>, filterConfig: filterConfig) {
-    this._gamesCardsList = gamesCardsList;
-    this._filterConfig = filterConfig;
+  /**
+   * Функция вызывает внутренние методы и возвращает массив отфильтрованных данных.
+   * @param {Array<GameCardConfig>} gamesCardsList Массив с исходными данными. Обязательный параметр.
+   * @param {FilterConfig} filterConfig Объект с настройками фильтрации следующего формата:
+   * * Ключ - название свойства исходного объекта, которое подлежит фильтрации. Например, "genre"
+   * * Значение - или ключевое слово - массив, содержащий допустимые значения фильтруемого свойства. Например, "Shooter"
+   *
+   * @return Массив с отфильтрованными данными
+   */
+  getFilteredData(
+    gamesCardsList: Array<GameCardConfig>,
+    filterConfig: FilterConfig,
+  ) {
+    // Записываем аргументы в свойства класса
+    this._gamesCardsList = gamesCardsList
+    this._filterConfig = filterConfig
 
-    return this._filter();
+    // Запускаем внутренний метод фильтрации данных
+    return this._filter()
   }
 }
 
-const filter = new Filter();
-export default filter;
+const filter = new Filter()
+export default filter

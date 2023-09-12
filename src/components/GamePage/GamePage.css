@@ -52,7 +52,7 @@
 .game-page__heading {
   font-size: 36px;
   letter-spacing: 1px;
-  text-shadow: 0 4px 4px rgba(0, 0, 0, .2);
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
   margin: 0 0 14px;
 }
 
@@ -60,7 +60,7 @@
   font-weight: 500;
   font-size: 40px;
   letter-spacing: 2px;
-  color: #29A1B2;
+  color: #29a1b2;
   margin: 0 0 30px;
 }
 
@@ -80,7 +80,7 @@
   letter-spacing: 2px;
   color: white;
   padding: 20px 59px;
-  background-color: #0897AB;
+  background-color: #0897ab;
   clip-path: polygon(0 0, 93% 0, 100% 26%, 100% 100%, 7% 103%, 0% 77%);
 }
 
@@ -92,7 +92,7 @@
   align-items: center;
   gap: 40px;
   padding-top: 50px;
-  border-top: 1px solid #012F35;
+  border-top: 1px solid #012f35;
   margin: 0 auto 88px;
 }
 
@@ -266,4 +266,3 @@
     width: 90%;
   }
 }
-

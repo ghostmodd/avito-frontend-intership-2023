@@ -1,12 +1,6 @@
-import React from "react";
-import "./Section.css";
-
-type SectionProps = {
-  className: string,
-  id: string,
-  heading: string,
-  children: React.ReactNode,
-}
+import React from "react"
+import "./Section.css"
+import { SectionProps } from "./SectionProps"
 
 const Section: React.FC<SectionProps> = (props) => {
   return (
@@ -19,4 +13,4 @@ const Section: React.FC<SectionProps> = (props) => {
   )
 }
 
-export default Section;
+export default Section
