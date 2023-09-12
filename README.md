@@ -1,27 +1,14 @@
-# vite-template-redux
+# Проект "Free Games"
+## Основная информация
+Проект разрабатывается с целью изучения новых технолоний: **TypeScript** и **Redux Toolkit**.
 
-Uses [Vite](https://vitejs.dev/), [Vitest](https://vitest.dev/), and [React Testing Library](https://github.com/testing-library/react-testing-library) to create a modern [React](https://react.dev/) app compatible with [Create React App](https://create-react-app.dev/)
+В качестве backend составляющей использовался бесплатный сервис ["Free to game"](https://www.freetogame.com/api-doc). По этой причине проект выполнен частично на английском языке.
 
-```sh
-npx degit reduxjs/redux-templates/packages/vite-template-redux my-app
-```
+Сейчас вы можете видеть раннюю версию проекта. В будущем планируются некоторые доработки.
 
-## Goals
-
-- Easy migration from Create React App or Vite
-- As beginner friendly as Create React App
-- Optimized performance compared to Create React App
-- Customizable without ejecting
-
-## Scripts
-
-- `dev`/`start` - start dev server and open browser
-- `build` - build for production
-- `preview` - locally preview production build
-- `test` - launch test runner
-
-## Inspiration
-
-- [Create React App](https://github.com/facebook/create-react-app/tree/main/packages/cra-template)
-- [Vite](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react)
-- [Vitest](https://github.com/vitest-dev/vitest/tree/main/examples/react-testing-lib)
+## Планы
+1. Добавить бесконечный скролл элементов на главной странице
+2. Ограничить выдачу карточке в зависимости от разрешения экрана
+3. Добавить сайдбар для страницы "Game Page"
+4. Реализовать хранение страниц игр в session storage
+5. Использовать собственный API для инкапсуляции запросов
