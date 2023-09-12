@@ -25,7 +25,7 @@ const GamesCardsList: React.FC = () => {
         visibleGamesCardsList.map((card: cardProps, index: number) => {
         return (
           <li className="games-cards-list__item" key={index}>
-            <GameCard imageLink={card.thumbnail} title={card.title} publisher={card.publisher}
+            <GameCard id={card.id} imageLink={card.thumbnail} title={card.title} publisher={card.publisher}
                       release_date={card.release_date} genre={card.genre} platform={card.platform} />
           </li>
         )

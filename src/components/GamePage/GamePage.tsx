@@ -6,9 +6,46 @@ import logo from "../../images/logo.svg";
 import {Footer} from "antd/lib/layout/layout";
 import {DotPosition} from "antd/es/carousel";
 import {DownloadOutlined} from "@ant-design/icons";
+import mainApi from "../../utils/api/MainApi";
+import {useParams} from "react-router-dom";
+
+
+type cardProps = {
+  id: number,
+  thumbnail: string,
+  title: string,
+  publisher: string,
+  release_date: string,
+  genre: string,
+  platform: string,
+};
 
 const GamePage: React.FC = () => {
+  const gameId = useParams();
+  const [gameData, setGameData] = React.useState({
+    id: 0,
+    title: "",
+    publisher: "",
+    short_description: "",
+    thumbnail: "",
+    screenshots: [{
+      id: 0,
+      image: "",
+    }],
+  });
   const [dotPosition, setDotPosition] = React.useState<DotPosition>('bottom');
+
+  React.useEffect(() => {
+    if (!gameData.id) {
+      mainApi.getGameById(Number(gameId.id))
+        .then((res) => {
+          setGameData(res);
+        })
+        .catch((err) => {
+          console.log(err)
+        });
+    }
+  }, [])
 
   return (
     <Layout className="black-background">
@@ -23,26 +60,26 @@ const GamePage: React.FC = () => {
           <div className="game-page__container">
             <div className="game-page__info-container">
               <div className="game-page__media-section">
-                <img className="game-page__img" src="https:\/\/www.freetogame.com\/g\/452\/Call-of-Duty-Warzone-4.jpg"
+                <img className="game-page__img" src={gameData.thumbnail}
                      alt="Изображение"/>
                 <div className="game-page__gallery">
-                  <img className="game-page__gallery-item" src="https:\/\/www.freetogame.com\/g\/452\/Call-of-Duty-Warzone-4.jpg"
-                       alt="Изображение"/>
-                  <img className="game-page__gallery-item" src="https:\/\/www.freetogame.com\/g\/452\/Call-of-Duty-Warzone-4.jpg"
-                       alt="Изображение"/>
-                  <img className="game-page__gallery-item" src="https:\/\/www.freetogame.com\/g\/452\/Call-of-Duty-Warzone-4.jpg"
-                       alt="Изображение"/>
-                  <img className="game-page__gallery-item" src="https:\/\/www.freetogame.com\/g\/452\/Call-of-Duty-Warzone-4.jpg"
-                       alt="Изображение"/>
+                  {gameData.screenshots.map((screenshot) => {
+                    return <img className="game-page__gallery-item"
+                                src={screenshot.image}
+                                alt={`Изображение из игры ${gameData.title}`}
+                                key={screenshot.id}
+                    />
+                  })}
                 </div>
               </div>
               <div className="game-page__title-section">
-                <h1 className="game-page__heading">Call Of Duty: Warzone</h1>
-                <p className="game-page__publisher">PC (Windows)</p>
+                <h1 className="game-page__heading">{gameData.title}</h1>
+                <p className="game-page__publisher">{gameData.publisher}</p>
                 <p className="game-page__description">
-                  A standalone free-to-play battle royale and modes accessible via Call of Duty: Modern Warfare.
+                  {gameData.short_description}
                 </p>
-                <Button className="game-page__btn-download" type={"primary"} size="large" icon={<DownloadOutlined/>}>Загрузить</Button>
+                <Button className="game-page__btn-download" type={"primary"} size="large"
+                        icon={<DownloadOutlined/>}>Загрузить</Button>
               </div>
             </div>
           </div>
@@ -50,22 +87,15 @@ const GamePage: React.FC = () => {
           <div className="gallery">
             <h2 className="gallery__heading">Gallery</h2>
             <Carousel className="gallery__carousel" dotPosition={dotPosition} autoplay={true}>
-              <div>
-                <img className="gallery__carousel-item" src="https:\/\/www.freetogame.com\/g\/452\/Call-of-Duty-Warzone-4.jpg"
-                     alt="Изображение"/>
-              </div>
-              <div>
-                <img className="gallery__carousel-item" src="https:\/\/www.freetogame.com\/g\/452\/Call-of-Duty-Warzone-4.jpg"
-                     alt="Изображение"/>
-              </div>
-              <div>
-                <img className="gallery__carousel-item" src="https:\/\/www.freetogame.com\/g\/452\/Call-of-Duty-Warzone-4.jpg"
-                     alt="Изображение"/>
-              </div>
-              <div>
-                <img className="gallery__carousel-item" src="https:\/\/www.freetogame.com\/g\/452\/Call-of-Duty-Warzone-4.jpg"
-                     alt="Изображение"/>
-              </div>
+              {gameData.screenshots.map((screenshot) => {
+                return <div>
+                  <img className="gallery__carousel-item"
+                       src={screenshot.image}
+                       alt={`Изображение из игры ${gameData.title}`}
+                       key={screenshot.id}
+                  />
+                </div>
+              })}
             </Carousel>
           </div>
         </section>

@@ -7,6 +7,7 @@ import mainApi from "../../utils/api/MainApi";
 import {setVisibleGamesCardsList} from "../../features/visibleGamesCardList/visibleGamesCardList";
 import useLocalStorage from "../../utils/hooks/useLocalStorage";
 import GamePage from "../GamePage/GamePage";
+import {Route, Routes} from "react-router-dom";
 
 const App: React.FC = () => {
   const visibleGamesCardsList = useSelector((state: RootState) => state.visibleGamesCardsList);
@@ -14,7 +15,7 @@ const App: React.FC = () => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    if(gamesListLocalStorage.length === 0) {
+    if (gamesListLocalStorage.length === 0) {
       mainApi.getGamesList()
         .then((res) => {
           setGamesListLocalStorage(res);
@@ -28,10 +29,10 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <>
-      {/*<Main/>*/}
-      <GamePage />
-    </>
+    <Routes>
+      <Route path="/" element={<Main />}/>
+      <Route path="/games/:id" element={<GamePage />}/>
+    </Routes>
   )
 }
 
