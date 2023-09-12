@@ -11,55 +11,47 @@ type cardProps = {
 };
 
 
-enum query {
-  Genre = "genre",
-  Platform = "platform",
-  Id = "id",
+type filterConfig = {
+  genre: Array<string>,
+  platform: Array<string>,
 }
 
 class Filter {
   private _gamesCardsList: Array<cardProps>;
-  private _queries: Array<query>;
-  private _keywords: Array<string | undefined>;
+  private _filterConfig: filterConfig;
 
   constructor() {
     this._gamesCardsList = [];
-    this._queries = [query.Id];
-    this._keywords = [undefined];
+    this._filterConfig = {
+      genre: [""],
+      platform: [""],
+    };
   }
 
   _filter() {
-    const results: Array<cardProps> = [];
+    let filteredArray: Array<cardProps> = [];
 
-    this._queries.forEach((query) => {
-      if (results.length === 0) {
-        this._gamesCardsList.forEach((card) => {
-          this._keywords.forEach((keyword) => {
-            // @ts-ignore
-            if (card[query].includes(keyword)) {
-              results.push(card);
-            }
-          })
-        })
-      } else {
-        results.forEach((card) => {
-          this._keywords.forEach((keyword) => {
-            // @ts-ignore
-            if (!card[query].includes(keyword)) {
-              results.splice(results.indexOf(card), results.length);
-            }
-          })
-        })
+    filteredArray = this._gamesCardsList.filter((card) => {
+      const filterResults = [];
+      for (let key in this._filterConfig) {
+        if (this._filterConfig[key as unknown as keyof filterConfig].length === 0) {
+          continue;
+        }
+
+        filterResults.push(this._filterConfig[key as unknown as keyof filterConfig].some((keyword) => {
+          return card[key as unknown as keyof cardProps].toString().includes(keyword);
+        }));
       }
-    })
-    return results;
+
+      return filterResults.every(item => item == true)
+    });
+
+    return filteredArray;
   }
 
-  getFilteredData(gamesCardsList: Array<cardProps>, queries: query[], keywords: string[]) {
+  getFilteredData(gamesCardsList: Array<cardProps>, filterConfig: filterConfig) {
     this._gamesCardsList = gamesCardsList;
-    this._queries = queries;
-    this._keywords = keywords;
-    console.log(keywords)
+    this._filterConfig = filterConfig;
 
     return this._filter();
   }

@@ -8,12 +8,15 @@ import {Button} from "antd";
 import {SearchOutlined} from "@ant-design/icons";
 import {RootState} from "../../store/store";
 import filter from "../../utils/utils/filter";
-import {setVisibleGamesCardsList} from "../../features/visibleGamesCardList/visibleGamesCardList";
+import {
+  setVisibleGamesCardsList,
+} from "../../features/visibleGamesCardList/visibleGamesCardList";
 
 const GamesFilters: React.FC = () => {
   const dispatch = useDispatch();
-  const visibleGamesCardsList = useSelector((state: RootState) => state.visibleGamesCardsList);
-  const filtersState = useSelector((state: RootState) => state.sorting);
+  // @ts-ignore
+  const gamesList = JSON.parse(localStorage.getItem("gamesList"));
+  const filterState = useSelector((state: RootState) => state.sorting);
 
   function handleCheckboxesCheck(evt: ChangeEvent<HTMLInputElement>, id: string) {
     if (evt.target.checked) {
@@ -23,40 +26,28 @@ const GamesFilters: React.FC = () => {
     }
   }
 
-  enum query {
-    Genre ="genre",
-    Platform = "platform",
-    Id = "id",
+  type filterConfig = {
+    genre: Array<string | undefined>,
+    platform: Array<string | undefined>,
   }
 
+  // @todo перенести тип в отдельный файл и импортировать оттуда
   function handleFilter() {
-    const queries = [];
-    const keywords: string[] = [];
+    const filterConfig: filterConfig = {
+      genre: [],
+      platform: [],
+    };
 
-    if(filtersState.isSortingGenre) {
-      queries.push(query.Genre);
-    }
-    if(filtersState.isSortingPlatform) {
-      queries.push(query.Platform);
-    }
-
-    for(let key in filtersState) {
-      if(key !== "isSortingGenre" && key !== "isSortingPlatform") {
-        if(filtersState[key]) {
-          keywords.push(key.replace("isSorting", ""));
-        }
+    for (let key in filterState) {
+      if ((key === "isSortingShooter" || key === "isSortingStrategy" || key === "isSortingSports" || key === "isSortingMMORPG") && filterState[key]) {
+        filterConfig.genre.push(key.replace("isSorting", ""));
+      } else if((key === "isSortingPC" || key === "isSortingWeb") && filterState[key]) {
+        filterConfig.platform.push(key.replace("isSorting", ""));
       }
     }
 
-    const gamesList = JSON.parse(localStorage.getItem("gamesList") as unknown as string);
-
-    if(gamesList) {
-      // @ts-ignore
-      const filteredArray = filter.getFilteredData(gamesList, queries, keywords);
-      dispatch(setVisibleGamesCardsList(filteredArray));
-    } else {
-      throw Error("Произошла ошибка!");
-    }
+    // @ts-ignore
+    dispatch(setVisibleGamesCardsList(filter.getFilteredData(gamesList, filterConfig)))
   }
 
   return (
