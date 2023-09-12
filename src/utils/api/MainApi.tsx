@@ -44,6 +44,10 @@ class MainApi {
   getGamesList() {
     return this._makeRequest(`${this._baseUrl}/games`, 'GET', this._maxAttempts)
   }
+
+  getGameById(id: number) {
+    return this._makeRequest(`${this._baseUrl}/game?id=${id}`, 'GET', this._maxAttempts)
+  }
 }
 
 const mainApi = new MainApi(

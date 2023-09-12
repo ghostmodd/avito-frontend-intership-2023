@@ -2,8 +2,10 @@ import React from "react";
 import "./GameCard.css";
 import {Card, Button, Progress} from "antd";
 import {DownloadOutlined} from "@ant-design/icons"
+import {useNavigate} from "react-router-dom";
 
 type GameCardProps = {
+  id: number,
   imageLink: string,
   title: string,
   publisher: string,
@@ -13,17 +15,26 @@ type GameCardProps = {
 };
 
 const GameCard: React.FC<GameCardProps> = (props) => {
+  const navigate = useNavigate();
   const [isDownloading, toggleIsDownloading] = React.useState(false);
 
   function handleDownload() {
     toggleIsDownloading(!isDownloading);
   }
 
+  function handleLinkToGamePage() {
+    navigate(`/games/${props.id}`);
+    window.scrollTo({
+      top: 0,
+      behavior: "instant"
+    })
+  }
+
   return (
     <Card
       hoverable
       className="game-card"
-      cover={<img alt={`Постер игры "${props.title}"`} src={props.imageLink}/>}
+      cover={<img alt={`Постер игры "${props.title}"`} src={props.imageLink} onClick={handleLinkToGamePage}/>}
     >
       <div className="game-card__info-container">
         <div className="game-card__title-container">
