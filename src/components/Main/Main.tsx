@@ -1,5 +1,4 @@
 import React from "react";
-import "./Main.css";
 import { Layout } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import logo from "../../images/logo.svg";
