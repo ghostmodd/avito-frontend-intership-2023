@@ -11,7 +11,7 @@ const Promo: React.FC<PromoProps> = (props) => {
           <div className="cropped-rectangle__container">
             <h1 className="promo__heading">{props.heading}</h1>
             <p className="promo__paragraph">{props.mainText}</p>
-            <a href="#game-list" className="promo__link-to-game-list link">
+            <a href="/avito-frontend-intership-2023/#game-list" className="promo__link-to-game-list link">
               {props.btnText}
             </a>
           </div>

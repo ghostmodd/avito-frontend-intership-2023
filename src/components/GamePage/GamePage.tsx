@@ -42,7 +42,7 @@ const GamePage: React.FC = () => {
   return (
     <Layout className="black-background">
       <Header className="header">
-        <a className="link" href="/">
+        <a className="link" href="/avito-frontend-intership-2023">
           <img src={logo} alt="Логотип проекта" />
         </a>
       </Header>
