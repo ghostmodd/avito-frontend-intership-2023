@@ -60,7 +60,7 @@ const CheckboxBlock: React.FC<CheckboxBlockProps> = (props) => {
                       props.handleCheck(evt, item.id)
                     }
                   />
-                  <span className="select__checkbox"></span>
+                  <label htmlFor={item.id} className="select__checkbox"></label>
                 </div>
               )
             })}
