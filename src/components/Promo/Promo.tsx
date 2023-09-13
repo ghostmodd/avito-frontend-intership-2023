@@ -12,7 +12,7 @@ const Promo: React.FC<PromoProps> = (props) => {
           <div className="cropped-rectangle__container">
             <h1 className="promo__heading">{props.heading}</h1>
             <p className="promo__paragraph">{props.mainText}</p>
-            <Link to="#game-list">{props.btnText}</Link>
+            <Link className="promo__link-to-game-list" to="#game-list">{props.btnText}</Link>
           </div>
         </div>
 
