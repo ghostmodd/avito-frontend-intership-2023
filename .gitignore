@@ -7,6 +7,8 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+*.sh
+
 # Dependencies
 node_modules
 .yarn/*
@@ -25,6 +27,7 @@ coverage
 
 # Production
 build
+build_repo
 
 # Miscellaneous
 *.local

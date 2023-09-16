@@ -1,0 +1,97 @@
+.select-hidden {
+  display: none;
+}
+
+.select {
+  position: relative;
+  width: 200px;
+}
+
+.select_active:after {
+  position: absolute;
+  width: 15px;
+  height: 8px;
+  top: 9px;
+  right: 0;
+  content: "";
+  background-image: url("../../images/select__arrow-icon.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.select__heading {
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 2px;
+  padding-bottom: 3px;
+  border-bottom: 2px solid white;
+  margin: 0 0 10px;
+  cursor: pointer;
+}
+
+.select__heading_active {
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+
+.select__options-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 200;
+}
+
+.select__option-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.select__option-container:last-of-type .select.select__option {
+  border-bottom: none;
+}
+
+.select__option {
+  width: 90px;
+  color: rgba(255, 255, 255, 0.2);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  padding: 0 5px 3px 0;
+  margin: 0;
+}
+
+.select__option_checked {
+  color: white;
+}
+
+.select__checkbox-container {
+  position: relative;
+}
+
+.select__invisible-checkbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(1px 0 0 0);
+}
+
+.select__checkbox {
+  cursor: pointer;
+  display: block;
+  border-radius: 3px;
+  background-color: #6c6e8c;
+  width: 17px;
+  height: 17px;
+  margin: 0;
+}
+
+.select__invisible-checkbox:focus + .select__checkbox {
+  outline: 1px solid #4285f4;
+}
+
+.select__invisible-checkbox:checked + .select__checkbox {
+  background-color: #0897ab;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("../../images/checkbox_checked.svg");
+  border: none;
+}
