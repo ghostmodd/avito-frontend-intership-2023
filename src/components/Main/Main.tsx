@@ -13,7 +13,7 @@ const Main: React.FC = () => {
   return (
     <Layout className="main-background">
       <Header className="header">
-        <a className="link" href="/avito-frontend-intership-2023">
+        <a className="link" href="/free-games">
           <img src={logo} alt="Логотип проекта" />
         </a>
       </Header>
